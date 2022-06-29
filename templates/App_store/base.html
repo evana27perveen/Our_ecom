@@ -1,0 +1,363 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <title>Hexa</title>
+</head>
+<body>
+<style>
+    .fa-stack[data-count]:after {
+        position: absolute;
+        right: 0%;
+        top: 0%;
+        content: attr(data-count);
+        font-size: 50%;
+        padding: 0.6em;
+        border-radius: 399px;
+        line-height: 0.75em;
+        color: white;
+        color: #df0000;
+        text-align: center;
+        min-width: 2em;
+        font-weight: bold;
+        background: white;
+        border-style: solid;
+    }
+
+    .fa-circle {
+        color: #df0000;
+    }
+
+    .red-cart {
+        color: #df0000;
+        background: white;
+    }
+</style>
+<style>
+
+
+.price {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	backdrop-filter: blur(8px);
+	background-color: rgba(0, 0, 0, 0.112);
+	box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+	border: 0px rgba(255, 255, 255, 0.4) solid;
+	border-bottom: 0px rgba(40, 40, 40, 0.35) solid;
+	border-right: 0px rgba(40, 40, 40, 0.35) solid;
+	padding: 5px 10px;
+	font-size: 0.8em;
+	border-radius: 4px;
+}
+
+.container {
+	position: relative;
+	padding: 0 20px;
+}
+.container .card {
+	position: relative;
+	width: 320px;
+	height: 450px;
+	border-radius: 20px;
+	background: linear-gradient(315deg, #f8e9cf, #da4726);
+	box-shadow: -20px -20px 25px #a69999, 20px 20px 25px #dddddd;
+	overflow: hidden;
+}
+.container .card:before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #9bdc28;
+	clip-path: circle(150px at 80% 20%);
+	transition: 0.5s ease-in-out;
+}
+.container .asics:before {
+	background: #f8f7f4;
+}
+.container .adidas:before {
+	background: #87ff89;
+}
+.container .new-balance:before {
+	background: #00fbff;
+}
+.container .card:hover:before {
+	clip-path: circle(300px at 80% -20%);
+}
+.container .card:after {
+	content: "";
+	position: absolute;
+	top: 30%;
+	left: -20%;
+	font-size: 12em;
+	font-weight: 800;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.04);
+}
+.container .asics:after {
+	content: "Asics";
+}
+.container .adidas:after {
+	content: "Adidas";
+}
+.container .new-balance:after {
+	content: "new-balance";
+}
+.container .card .imgBx {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 200;
+	width: 100%;
+	height: 220px;
+	transition: 0.5s ease-in-out;
+}
+.container .card:hover .imgBx {
+	top: 0%;
+	transform: translateY(0%);
+}
+.container .card .imgBx img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(-25deg);
+	width: 270px;
+}
+.container .card .contentBx {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	transition: 1s;
+	z-index: 10;
+}
+.container .card:hover .contentBx {
+	height: 210px;
+}
+.container .card .contentBx h2 {
+	position: relative;
+	font-weight: 600;
+	letter-spacing: 1px;
+	color: #600505;
+}
+/* Shoe Size */
+.container .card .contentBx .size,
+.container .card .contentBx .color {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 20px;
+	transition: 0.5s;
+	opacity: 0;
+	visibility: hidden;
+}
+.container .card:hover .contentBx .size {
+	opacity: 1;
+	visibility: visible;
+	translate-delay: 0.5s;
+}
+.container .card:hover .contentBx .color {
+	opacity: 1;
+	visibility: visible;
+	translate-delay: 0.6s;
+}
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+	color: #fff;
+	font-weight: 300;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-right: 10px;
+}
+.container .card .contentBx .size span {
+	width: 26px;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	font-size: 14px;
+	display: inline-block;
+	color: #111;
+	background: #fff;
+	margin: 0 5px;
+	transition: 0.5s;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.container .asics .contentBx .size span:hover {
+	background: #155eb4;
+}
+.container .adidas .contentBx .size span:hover {
+	background: #99243a;
+}
+.container .new-balance .contentBx .size span:hover {
+	background: #8a8576;
+}
+
+/* Shoe color */
+.container .card .contentBx .color span {
+	width: 20px;
+	height: 20px;
+	background: #ff0;
+	border-radius: 50%;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.container .card .contentBx .color span:nth-child(2) {
+	background: #155eb4;
+}
+.container .card .contentBx .color span:nth-child(3) {
+	background: red;
+}
+.container .card .contentBx .color span:nth-child(4) {
+	background: black;
+}
+
+/* Button/ */
+.container .card .contentBx button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: #fff;
+	border-radius: 4px;
+	margin-top: 10px;
+	text-decoration: none;
+	font-weight: 600;
+	color: #111;
+	opacity: 0;
+	transform: translateY(50px);
+	transition: 0.5s;
+	border: none;
+}
+.container .card:hover .contentBx button {
+	opacity: 1;
+	transform: translateY(0px);
+	transform-delay: 0.75s;
+	cursor: pointer;
+}
+
+.info {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	color: #fff;
+	cursor: pointer;
+	z-index: 300;
+}
+
+.text {
+	display: none;
+	color: #fff;
+	padding: 2em;
+	z-index: 299;
+	position: relative;
+	backdrop-filter: blur(20px);
+	background-color: rgba(0, 0, 0, 0.2);
+	height: 100%;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.info:hover + .text {
+	display: block;
+}
+
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'App_store:home' %}" style="margin-right: 37%; color: darkred; font-weight: bolder">Hexa</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'App_store:home' %}">Home</a>
+                </li>
+                <li class="nav-item" style="margin-right: 20%">
+                    <a class="nav-link" href="#">Store</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="custom-navbar-image">
+                                        <img src="{{ user.profile_picture.url }}" width="40"
+                                             height="40" class="rounded-circle">
+                                  </span>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'App_login:profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a href="{% url 'App_login:logout' %}" class="dropdown-item">Logout</a></li>
+                        </ul>
+                    </li>
+
+                {% else %}
+                    <li>
+                        <a href="{% url 'App_login:login' %}" class="dropdown-item">Login</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        {% if user.is_authenticated %}
+            <ul class="nav-item">
+                <a class="nav-link" href="#">
+                        <span class="fa-stack fa-2x has-badge" data-count="{{ cart }}" style="font-size: 20px">
+                        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                        <i style="" class="fa fa-shopping-cart fa-stack-2x red-cart"></i>
+                        </span>
+                </a>
+            </ul>
+        {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Product/Brand/Category" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+
+    </div>
+
+</div>
+<hr>
+<hr>
+
+{% block body %}
+
+
+{% endblock %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
